@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./assets/style/normalize.css">
+        <link rel="stylesheet" href="./assets/style/style.css">
+        <title>StarWars</title>
+    </head>
+    <body>
+        <main>
+            <div class="container">
+                <h1>Star Wars</h1>
+                <form action="">
+                    <div class="form">
+                        <div class="form__select">
+                            <div class="select">
+                                <div class="select__title" data-default="Option 0">Choose ressource</div>
+                                <div class="select__content">
+                                    <input id="resource" class="select__input" type="radio" name="singleSelect" value="0" checked />
+                                    <label for="resource" class="select__label">Choose ressource</label>
+                                    <input id="select-resource1" class="select__input" type="radio" name="singleSelect" value="planets"/>
+                                    <label for="select-resource1" class="select__label">Planets</label>
+                                    <input id="select-resource2" class="select__input" type="radio" name="singleSelect" value="people"/>
+                                    <label for="select-resource2" class="select__label">People</label>
+                                    <input id="select-resource3" class="select__input" type="radio" name="singleSelect" value="films"/>
+                                    <label for="select-resource3" class="select__label">Films</label>
+                                    <input id="select-resource4" class="select__input" type="radio" name="singleSelect" value="vehicle"/>
+                                    <label for="select-resource4" class="select__label">Vehicle</label>
+                                </div>
+                            </div> 
+                                <input class="text__input" id="index" type="number" min="1" placeholder="Number">
+                            <button>Search</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="preloader" hidden>
+                    <div class="loadingio-spinner-ripple-2bbghpeiitn"><div class="ldio-oi8zgo99k9h">
+                        <div></div><div></div>
+                        </div></div>
+                </div>
+                <div class="output">
+                    <div class="output__resolve" hidden>
+                        Здесь будет выводиться информация
+                    </div>
+                    <div class="output__reject" hidden>
+                        Сообщение об ошибке
+                    </div>
+                </div>
+            </div>
+        </main>
+    <script src="./assets/script/script.js"></script>
+    </body>
+</html>
