@@ -83,12 +83,12 @@ function getInfo(evt) { // функция, которая выполняет з�
                     })
                     .catch((err) => { //ловит ошибку некорректного индекса
                         rejectOutput.hidden = false; // активирует окно ошибок
-                        rejectOutput.innerHTML = `${err.message}. Please try again.`;
+                        rejectOutput.innerHTML = `${err.message}. Please try another number.`;
                         preloader.hidden = true;
                     })
             } catch (err) { //ловит ошибку некорректного ресурса
                 rejectOutput.hidden = false;
-                rejectOutput.innerHTML = `${err.message}. Please try again.`;
+                rejectOutput.innerHTML = `${err.message}. Please choose resources.`;
                 preloader.hidden = true;
             } finally { // выполняется в любом случае
                 finallyOutput.hidden = false;
