@@ -35,7 +35,7 @@ function getInfo(evt) { // функция, которая выполняет з�
     for (const ressource of inputsRessource) {
         if (ressource.checked == true) { // сбор значений выбранных инпутов
             const valueRessource = ressource.value;
-            const valueIndex = Number(inputIndex.value);
+            const valueIndex = parseInt(inputIndex.value);
             resolveOutput.hidden = true;
             rejectOutput.hidden = true;
             finallyOutput.hidden = true;
@@ -52,7 +52,7 @@ function getInfo(evt) { // функция, которая выполняет з�
                             return Promise.reject(new Error("Error " + res.status + ". Invalid number"));
                         }
                         resolveOutput.hidden = false; // активирует окно для отображения информации
-                        switch(valueRessource){
+                        switch(valueRessource){ // формируется контент
                             case "people": 
                                 resolveOutput.innerHTML = `<p>Name: ${json.name}</p>
                                 <p>Birth year: ${json.birth_year}</p>
