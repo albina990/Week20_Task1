@@ -6,7 +6,7 @@ const button = document.querySelector("button"); // кнопка "найти"
 const selectedTitle = select.querySelector(".select__title"); //заголовок выпадающего списка
 const selectLabels = select.querySelectorAll(".select__label"); // опции выпадающего списка
 const inputIndex = document.getElementById("index"); // инпут для ввода номера
-const inputsRessource = document.querySelectorAll('input[name = "singleSelect"]'); //инпуты опций выпадающнго списка
+const inputsResource = document.querySelectorAll('input[name = "singleSelect"]'); //инпуты опций выпадающнго списка
 const preloader = document.querySelector(".preloader"); //кружок загрузки
 const resolveOutput = document.querySelector(".output__resolve"); //див, в который выводится результат при успешном выполнении
 const rejectOutput = document.querySelector(".output__reject"); //див, в который выводится ошибка
@@ -32,27 +32,27 @@ for (let i = 0; i < selectLabels.length; i++) {
 function getInfo(evt) { // функция, которая выполняет запрос к api и выводит результат на странице
     evt.preventDefault();
     preloader.hidden = false; // появление кружка загрузки
-    for (const ressource of inputsRessource) {
-        if (ressource.checked == true) { // сбор значений выбранных инпутов
-            const valueRessource = ressource.value;
+    for (const resource of inputsResource) {
+        if (resource.checked == true) { // сбор значений выбранных инпутов
+            const valueResource = resource.value;
             const valueIndex = parseInt(inputIndex.value);
             resolveOutput.hidden = true;
             rejectOutput.hidden = true;
             finallyOutput.hidden = true;
-            let res; // переменная для ответа от сервера
+            let resStatus; // переменная для статуса ответа от сервера
             try {
-                if (valueRessource == "0") throw new Error("Invalid ressource"); //выброс ошибки при пустом поле ressource
-                fetch(`https://swapi.dev/api/${valueRessource}/${valueIndex}/`)
+                if (valueResource == "0") throw new Error("Invalid category"); //выброс ошибки при пустом поле category
+                fetch(`https://swapi.dev/api/${valueResource}/${valueIndex}/`)
                     .then((response) => {
-                        res = response;
+                        resStatus = response.status; // статуст ответа на GET запрос
                         return response.json();
                     })
                     .then((json) => {
                         if (json.detail == "Not found") { //выброс ошибки при вводе некорректного индекса
-                            return Promise.reject(new Error("Error " + res.status + ". Invalid number"));
+                            return Promise.reject(new Error("Error " + resStatus + ". Invalid number"));
                         }
                         resolveOutput.hidden = false; // активирует окно для отображения информации
-                        switch(valueRessource){ // формируется контент
+                        switch(valueResource){ // формируется контент в зависимости от выбранных опций
                             case "people": 
                                 resolveOutput.innerHTML = `<p>Name: ${json.name}</p>
                                 <p>Birth year: ${json.birth_year}</p>
@@ -86,9 +86,9 @@ function getInfo(evt) { // функция, которая выполняет з�
                         rejectOutput.innerHTML = `${err.message}. Please try another number.`;
                         preloader.hidden = true;
                     })
-            } catch (err) { //ловит ошибку некорректного ресурса
+            } catch (err) { //ловит ошибку некорректной категории
                 rejectOutput.hidden = false;
-                rejectOutput.innerHTML = `${err.message}. Please choose resources.`;
+                rejectOutput.innerHTML = `${err.message}. Please choose a category.`;
                 preloader.hidden = true;
             } finally { // выполняется в любом случае
                 finallyOutput.hidden = false;
